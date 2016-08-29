@@ -1,0 +1,33 @@
+Django==1.8.7
+django-extensions==1.6.1
+
+django-disposable-email-checker==1.2.1
+
+# PostgresSQL
+psycopg2==2.6.1
+
+# serve files
+whitenoise==2.0.6
+
+# Rest Framework
+djangorestframework==3.4.6
+djangorestframework-jwt==1.8
+PyJWT==1.4.0
+
+# Sentry
+raven==5.8.1
+
+# for date processing
+python-dateutil==2.4.2
+
+# for phone number validation
+django-phonenumber-field==1.1.0
+
+# Facebook
+facebook-sdk==1.0.0
+
+#send email
+sendgrid==2.2.1
+
+# Logging
+git+https://github.com/Seedstars/django-rest-logger.git
