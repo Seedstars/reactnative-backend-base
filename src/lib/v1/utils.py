@@ -23,7 +23,7 @@ def validate_email(value):
             return True
 
 
-class AtomicMixin(object):
+class AtomicMixin(object):  # pragma: no cover
     """
     Ensure we rollback db transactions on exceptions.
 

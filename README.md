@@ -1,6 +1,8 @@
-# MileFriend Maintenance Backend Project
+# Mobile App Base Project (Backend)
 
-This repository includes a boilerplate project for React Native applications used for Seedstars Labs.
+This repository includes a boilerplate project for backend to be used by React Native applications built in Seedstars Labs.
+
+Download the React Native app here: https://github.com/seedstars/reactnative-mobile-app-base
 
 ## Readme Notes
 
@@ -10,8 +12,8 @@ This repository includes a boilerplate project for React Native applications use
 
 ## Retrieve code
 
-* `$ git clone https://github.com/Seedstars/milefriend-maintenance-backend.git`
-* `$ cd milefriend-maintenance-backend`
+* `$ git clone https://github.com/Seedstars/reactnative-backend-base.git`
+* `$ cd reactnative-backend-base`
 
 ## Installation
 

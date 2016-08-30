@@ -1,11 +1,8 @@
+import base64
 from unittest import TestCase
 
-def mock_send_email(msg, subject):  # noqa
-    """Mock send email response."""
-    return None
 
-
-class CustomTestCase(TestCase):
+class CustomTestCase(TestCase):  # pragma: no cover
     def assert_fields_required(self, required, form, list_fields):
         """
         Check if a list of fields and required or not required in a form.
@@ -31,7 +28,8 @@ class CustomTestCase(TestCase):
         for invalid_dict in invalid_data_dicts:
             form_data = form(data=invalid_dict['data'])
             self.assertFalse(form_data.is_valid())
-            self.assertEqual(form_data.errors[invalid_dict['error'][0]], invalid_dict['error'][1],
+            self.assertEqual(form_data.errors[invalid_dict['error'][0]],
+                             invalid_dict['error'][1],
                              msg=invalid_dict['label'])
 
     def assert_valid_data(self, form, valid_data_dicts):
@@ -63,3 +61,14 @@ class CustomTestCase(TestCase):
                 print('Implement other methods.')  # pragma: no cover
             error_msg = '{}-{}-{}'.format(invalid_dict['label'], response.status_code, response.content)
             self.assertEqual(response.status_code, invalid_dict['status'], msg=error_msg)
+
+
+def get_basic_auth_header(username, password):
+    """
+    Used in tests to create the basic authentication string.
+
+    :param username: string
+    :param password: string
+    :return:
+    """
+    return 'Basic {}'.format(base64.b64encode(('{}:{}'.format(username, password)).encode('ascii')).decode())

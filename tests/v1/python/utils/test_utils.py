@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from lib.utils import validate_email
+from lib.v1.utils import validate_email
 
 
 class BaseTests(TestCase):

@@ -30,15 +30,9 @@ INSTALLED_APPS = INSTALLED_APPS + (  # NOQA (ignore all errors on this line)
     'raven.contrib.django.raven_compat',
 )
 
-# ####### Logging
-
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
-    'root': {
-        'level': 'WARNING',
-        'handlers': ['sentry'],
-    },
     'formatters': {
         'verbose': {
             'format': '%(levelname)s %(asctime)s %(module)s '
@@ -59,25 +53,25 @@ LOGGING = {
     'loggers': {
         'django.db.backends': {
             'level': 'ERROR',
+            'handlers': ['sentry'],
+            'propagate': False,
+        },
+        'sentry': {
+            'level': 'DEBUG',
+            'handlers': ['sentry'],
+            'propagate': False,
+        },
+        'console': {
+            'level': 'INFO',
             'handlers': ['console'],
-            'propagate': False,
-        },
-        'raven': {
-            'level': 'DEBUG',
-            'handlers': ['sentry'],
-            'propagate': False,
-        },
-        'sentry.errors': {
-            'level': 'DEBUG',
-            'handlers': ['sentry'],
-            'propagate': False,
-        },
+            'propagate': False
+        }
     },
 }
 
-DEFAULT_LOGGER = 'raven'
+DEFAULT_LOGGER = 'console'
 
-LOGGER_EXCEPTION = DEFAULT_LOGGER
+LOGGER_EXCEPTION = 'sentry'
 LOGGER_ERROR = DEFAULT_LOGGER
 LOGGER_WARNING = DEFAULT_LOGGER
-LOGGER_INFO = 'infolog'
+LOGGER_INFO = DEFAULT_LOGGER

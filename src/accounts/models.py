@@ -5,6 +5,8 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
+from phonenumber_field.modelfields import PhoneNumberField
+
 
 class MyUserManager(BaseUserManager):
     def _create_user(self, email, facebook_uid, facebook_access_token, first_name, last_name, password, is_staff,
@@ -57,7 +59,8 @@ class MyUserManager(BaseUserManager):
         return self._create_user(email, facebook_uid, facebook_access_token, first_name, last_name, password=None,
                                  is_staff=False, is_superuser=False, **extra_fields)
 
-    def create_superuser(self, email, password, first_name='', last_name='', **extra_fields):
+    def create_superuser(self, email, password, first_name, last_name, facebook_uid, facebook_access_token,
+                         **extra_fields):
         """
         Create a super user.
 
@@ -65,11 +68,13 @@ class MyUserManager(BaseUserManager):
         :param password: string
         :param first_name: string
         :param last_name: string
+        :param facebook_uid: string
+        :param facebook_access_token: string
         :param extra_fields:
         :return: User
         """
-        return self._create_user(email, '', '', first_name, last_name, password, is_staff=True, is_superuser=True,
-                                 **extra_fields)
+        return self._create_user(email, facebook_uid, facebook_access_token, first_name, last_name, password,
+                                 is_staff=True, is_superuser=True, **extra_fields)
 
 
 class User(AbstractBaseUser):
@@ -78,10 +83,14 @@ class User(AbstractBaseUser):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     first_name = models.CharField(_('First Name'), max_length=50, default='Friend')
     last_name = models.CharField(_('Last Name'), max_length=50, blank=True)
-    email = models.EmailField(_('Email Address'), blank=True)
+    email = models.EmailField(_('Email Address'), blank=True, unique=True)
     facebook_uid = models.CharField(_('Facebook UID'), max_length=50, unique=True)
     one_signal_id = models.CharField(_('ONE Signal ID'), max_length=50, blank=True)
     gender = models.CharField(_('Gender'), max_length=25, blank=True)
+    branch_data = models.TextField(_('Referrer'), blank=True)
+    phone_number = PhoneNumberField(_('Phone Number'), blank=True)
+
+    app_version = models.CharField(_('App Version'), max_length=5, blank=True)
 
     is_staff = models.BooleanField(_('Staff Status'), default=False)
     is_superuser = models.BooleanField(_('Superuser Status'), default=False)
@@ -90,7 +99,7 @@ class User(AbstractBaseUser):
 
     facebook_access_token = models.CharField(_('Facebook Access Token'), max_length=250, blank=True)
 
-    USERNAME_FIELD = 'facebook_uid'
+    USERNAME_FIELD = 'email'
 
     objects = MyUserManager()
 
