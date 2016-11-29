@@ -14,6 +14,13 @@ Download the React Native app here: https://github.com/seedstars/reactnative-mob
 
 * `$ git clone https://github.com/Seedstars/reactnative-backend-base.git`
 * `$ cd reactnative-backend-base`
+* `$ git submodule init`
+* `$ git submodule update`
+* `$ ./scripts/get_static_validation.sh`
+
+Remember that when you copy this repository for a new project you need to add the scripts external module using:
+
+* `$ git submodule add https://github.com/Seedstars/culture-scripts scripts`
 
 ## Installation
 
