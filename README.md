@@ -34,6 +34,10 @@ Remember that when you copy this repository for a new project you need to add th
 * `$ python manage.py migrate`
 * `$ python manage.py runserver`
 
+### Required Configuration
+
+You need to edit settings/base.py and insert credentials for Facebook login.
+
 ## Running
 
 Run Django development http server
