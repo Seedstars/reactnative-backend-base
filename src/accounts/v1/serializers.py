@@ -8,7 +8,7 @@ from lib.v1.utils import validate_email as email_is_valid
 class LoginRegistrationSerializer(serializers.ModelSerializer):
     facebook_uid = serializers.CharField()
     facebook_access_token = serializers.CharField()
-    email = serializers.CharField(required=False)
+    email = serializers.EmailField(required=False, allow_blank=True)
     branch_data = serializers.JSONField(required=False)
 
     class Meta:
@@ -32,7 +32,7 @@ class LoginRegistrationSerializer(serializers.ModelSerializer):
         :param value: string
         :return: string
         """
-        if not email_is_valid(value):
+        if value and not email_is_valid(value):
             raise serializers.ValidationError('Email is invalid.')
 
         return value

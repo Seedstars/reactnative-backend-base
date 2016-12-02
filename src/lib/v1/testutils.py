@@ -42,7 +42,9 @@ class CustomTestCase(TestCase):  # pragma: no cover
         """
         for valid_data in valid_data_dicts:
             form_data = form(data=valid_data)
-            self.assertTrue(form_data.is_valid)
+            form_data.is_valid()
+            print(form_data.errors)
+            self.assertTrue(form_data.is_valid())
 
     def assert_invalid_data_response(self, url, invalid_data_dicts):
         """

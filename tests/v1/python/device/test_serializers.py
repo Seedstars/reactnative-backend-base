@@ -22,7 +22,7 @@ class OrderDeviceSerializerTest(CustomTestCase, APITestCase):
     ]
     VALID_DATA_DICT = [
         {
-            'user': 1,
+            'user': '28cae40c-7caf-4e24-87d6-d9ec68853b7d',
             'address': 'Street John 221',
             'phone_number': '+23412345678'
         },
@@ -31,7 +31,7 @@ class OrderDeviceSerializerTest(CustomTestCase, APITestCase):
     def setUp(self):
         self.required_fields = ['user', 'address', 'phone_number']
         self.not_required_fields = ['id', 'payment']
-        self.user = UserFactory(id=1, email='a@a.com')
+        self.user = UserFactory(id='28cae40c-7caf-4e24-87d6-d9ec68853b7d', email='a@a.com')
 
     def test_fields(self):
         serializer = OrderDeviceSerializer()
