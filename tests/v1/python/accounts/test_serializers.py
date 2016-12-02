@@ -60,7 +60,7 @@ class LoginRegistrationSerializerTest(CustomTestCase, APITestCase):
 
     def setUp(self):
         self.required_fields = ['facebook_uid', 'facebook_access_token']
-        self.not_required_fields = ['first_name', 'last_name', 'gender', 'email', 'branch_data', 'app_version']
+        self.not_required_fields = ['first_name', 'last_name', 'gender', 'email', 'branch_data', 'app_version', 'id']
 
         self.user = UserFactory.create(email='emailwilllogininserializer@mydomain.com')
         self.fb_long_lived_token = {'access_token': 'yyyyyyyyyyyyyyyyyy'}

@@ -14,7 +14,7 @@ class LoginRegistrationSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('facebook_uid', 'facebook_access_token', 'first_name', 'last_name', 'gender', 'email', 'branch_data',
-                  'app_version')
+                  'app_version', 'id')
 
     def create(self, validated_data):
         """Overriden."""

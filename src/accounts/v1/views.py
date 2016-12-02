@@ -65,6 +65,7 @@ class UserLoginRegisterView(GenericAPIView):
             'token': token,
             'outdated': outdated,
             'user': {
+                'id': user.id,
                 'one_signal_id': user.one_signal_id,
                 'facebook_access_token': user.facebook_access_token,
                 'facebook_uid': user.facebook_uid,
@@ -116,6 +117,7 @@ class UserRegisterView(AtomicMixin, CreateModelMixin, GenericAPIView):
             'token': token,
             'outdated': outdated,
             'user': {
+                'id': user.id,
                 'one_signal_id': user.one_signal_id,
                 'facebook_access_token': user.facebook_access_token,
                 'facebook_uid': user.facebook_uid,
