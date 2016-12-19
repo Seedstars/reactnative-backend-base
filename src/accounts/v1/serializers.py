@@ -119,7 +119,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('name', 'email', 'password', 'confirm_password', 'app_version', 'branch_data')
+        fields = ('name', 'email', 'password', 'confirm_password', 'app_version', 'branch_data', 'facebook_uid')
 
     def create(self, validated_data):
         """
