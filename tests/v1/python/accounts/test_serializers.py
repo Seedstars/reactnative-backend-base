@@ -189,7 +189,8 @@ class UserRegistrationSerializerTest(CustomTestCase, APITestCase):
         {'data': {'email': 'test1@mailinator.com',
                   'name': 'John Doe',
                   'password': 'test',
-                  'confirm_password': 'test'},
+                  'confirm_password': 'test',
+                  'facebook_uid': 'randomfacebookuid'},
          'error': ('email', ['Please use a different email address provider.']),
          'label': 'Invalid email.',
          'method': 'POST',
@@ -198,7 +199,8 @@ class UserRegistrationSerializerTest(CustomTestCase, APITestCase):
         {'data': {'email': 'test1@gmail',
                   'name': 'John Doe',
                   'password': 'test',
-                  'confirm_password': 'test'},
+                  'confirm_password': 'test',
+                  'facebook_uid': 'randomfacebookuid'},
          'error': ('email', ['Enter a valid email address.']),
          'label': 'Bad email format.',
          'method': 'POST',
@@ -208,7 +210,8 @@ class UserRegistrationSerializerTest(CustomTestCase, APITestCase):
                   'name': 'John Doe',
                   'password': 'test',
                   'confirm_password': 'test',
-                  'app_version': '2.0.0'},
+                  'app_version': '2.0.0',
+                  'facebook_uid': 'randomfacebookuid'},
          'error': ('app_version', ['App version not valid.']),
          'label': 'App version not valid.',
          'method': 'POST',
@@ -218,7 +221,8 @@ class UserRegistrationSerializerTest(CustomTestCase, APITestCase):
                   'name': 'John Doe',
                   'password': 'test',
                   'confirm_password': 'test',
-                  'app_version': '2.0'},
+                  'app_version': '2.0',
+                  'facebook_uid': 'randomfacebookuid'},
          'error': ('email', ['Email already in use, please use a different email address.']),
          'label': 'User with email already exists.',
          'method': 'POST',
@@ -228,7 +232,8 @@ class UserRegistrationSerializerTest(CustomTestCase, APITestCase):
                   'name': 'John Doe',
                   'password': 'test',
                   'confirm_password': 'test2',
-                  'app_version': '2.0'},
+                  'app_version': '2.0',
+                  'facebook_uid': 'randomfacebookuid'},
          'error': ('non_field_errors', ['Passwords don\'t match.']),
          'label': 'Password and confirm password don\'t match.',
          'method': 'POST',
@@ -239,16 +244,18 @@ class UserRegistrationSerializerTest(CustomTestCase, APITestCase):
         {'email': 'emailsuccess@a.com',
          'name': 'John Doe',
          'password': 'test',
-         'confirm_password': 'test'},
+         'confirm_password': 'test',
+         'facebook_uid': 'randomfacebookuid_1'},
         {'email': 'emailsuccess@a.com',
          'name': 'John Doe',
          'app_version': '1.0',
          'password': 'test',
-         'confirm_password': 'test'},
+         'confirm_password': 'test',
+         'facebook_uid': 'randomfacebookuid_2'},
     ]
 
     def setUp(self):
-        self.required_fields = ['email', 'name', 'password', 'confirm_password']
+        self.required_fields = ['email', 'name', 'password', 'confirm_password', 'facebook_uid']
         self.not_required_fields = ['app_version', 'branch_data']
         self.user = UserFactory(email='b@b.com')
 
